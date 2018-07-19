@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  age: 1
+  gender: MyString
+  ll_latitude: 1.5
+  ll_longitude: 1.5
+  infested: MyString
+  reports: 1
+  qt_water: 1
+  qt_food: 1
+  qt_medication: 1
+  qt_ammunition: 1
+
+two:
+  name: MyString
+  age: 1
+  gender: MyString
+  ll_latitude: 1.5
+  ll_longitude: 1.5
+  infested: MyString
+  reports: 1
+  qt_water: 1
+  qt_food: 1
+  qt_medication: 1
+  qt_ammunition: 1

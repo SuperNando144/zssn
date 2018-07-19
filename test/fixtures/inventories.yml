@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner_id: 1
+  qt_water: 1
+  qt_food: 1
+  qt_medication: 1
+  qt_ammunition: 1
+
+two:
+  owner_id: 1
+  qt_water: 1
+  qt_food: 1
+  qt_medication: 1
+  qt_ammunition: 1
