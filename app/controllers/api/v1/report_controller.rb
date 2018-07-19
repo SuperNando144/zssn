@@ -30,6 +30,11 @@ module Api
 
 			def points_lost
 				@points_lost = Survivor.points_lost
+				if @points_lost
+    			 	render json: {status: 'SUCCESS', message:'Pontos perdidos', data:@points_lost},status: :ok
+    			 else
+    			 	render json: {status: 'ERRO', message:'Houve um erro no calculo dos pontos perdidos', data:"Erro"},status: :ok
+    			 end
 			end
 		end
 	end
