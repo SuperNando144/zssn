@@ -1,6 +1,7 @@
 module Api
 	module V1
 		class ReportController < ApplicationController  
+			#Metodo para retornar a porcentagem de sobreviventes infestados
 			def percentage_infested_survivors
 				@infecteds = Survivor.infected
 				if @infecteds
@@ -10,6 +11,7 @@ module Api
     			 end
 			end
 
+			#Metodo para retornar a porcentagem de sobreviventes nao infestados
 			def percentage_uninfested_survivors
 				@uninfecteds = Survivor.uninfected
 				if @uninfecteds
@@ -19,6 +21,7 @@ module Api
     			 end
 			end
 
+			#Metodo para retornar a media de recursos por sobrevivente
 			def average_resources_by_survivor
 				@average = Survivor.average_resources_by_survivor
 				if @average
@@ -28,6 +31,7 @@ module Api
     			 end
 			end
 
+			#Metodo para retornar os pontos perdidos por sobrevivente infestado
 			def points_lost
 				@points_lost = Survivor.points_lost
 				if @points_lost

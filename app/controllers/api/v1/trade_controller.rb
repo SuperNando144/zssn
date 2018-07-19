@@ -1,6 +1,8 @@
 module Api
 	module V1
 		class TradeController < ApplicationController  
+
+			#Método que fara a troca com base no link 
 			def trade_withsurvivor
 				survivor_1 = Survivor.find(params[:survivor_1_id])
     			survivor_2 = Survivor.find(params[:survivor_2_id])
@@ -14,6 +16,7 @@ module Api
     			 end
 			end
 
+			#Método de capturar dos parametros 
 			 private
 			 def trade_params
 			 	params.permit(offered: {}, wanted: {})
