@@ -468,7 +468,7 @@ Body:
 ##### Request 
 
 ```sh
-GET   /reports/resources_by_survivor
+GET   /api/v1/average_resources_by_survivor
 ```
 
 ##### Response
@@ -484,12 +484,9 @@ Content-Type: "application/json"
 ```sh
 Body:
 {
-    "averages": {
-        "water": 5,
-        "food": 7,
-        "medication": 1.5,
-        "ammunition": 0
-    }
+    "status": "SUCCESS",
+    "message": "Media de recursos por sobrevivente",
+    "data": "Existem x sobrevivente(s) não infectado(s),e a media de itens por cada um eh a seguinte: agua - x, alimentos - x, medicamentos - x, municao - x"
 }
 ```
 
@@ -498,7 +495,7 @@ Body:
 ##### Request 
 
 ```sh
-GET   /reports/lost_infected_points
+GET   /api/v1/points_lost
 ```
 
 ##### Response
@@ -514,7 +511,9 @@ Content-Type: "application/json"
 ```sh
 Body:
 {
-    "lost_points": 30
+    "status": "SUCCESS",
+    "message": "Pontos perdidos",
+    "data": "A quantidade de pontos atualmente eh de 154"
 }
 ```
 
@@ -529,7 +528,3 @@ The project was build with TDD (Test Driven Development). To execute the tests j
     ~~~
 
 To see the test cover percent open the file `coverage/index.html` at your browser.
-
-## Credits
-
-- [Cleiviane](https://about.me/cleiviane) (last survivor who knows how to code) 
