@@ -513,7 +513,7 @@ Body:
 {
     "status": "SUCCESS",
     "message": "Pontos perdidos",
-    "data": "A quantidade de pontos atualmente eh de 154"
+    "data": "A quantidade de pontos atualmente eh de x"
 }
 ```
 
