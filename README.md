@@ -36,8 +36,8 @@ ZSSN Is a system created to help the human to survive an apocalypse zombie. Usin
 	~~~
 
 3. Set the database to postgre in the config file `config/database.yml`, add the follow code.
-	
-	`default: &default
+	```sh
+	default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -52,7 +52,8 @@ ZSSN Is a system created to help the human to survive an apocalypse zombie. Usin
   database: survivors
   production:
   <<: *default
-  database: survivors`
+  database: survivors
+  ```
 
 4. Start the application
 
