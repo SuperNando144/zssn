@@ -15,7 +15,7 @@ module Api
 			def percentage_uninfested_survivors
 				@uninfecteds = Survivor.uninfected
 				if @uninfecteds
-    			 	render json: {status: 'SUCCESS', message:'Porcentagem de Sobreviventes infestados', data:@uninfecteds},status: :ok
+    			 	render json: {status: 'SUCCESS', message:'Porcentagem de Sobreviventes nao infestados', data:@uninfecteds},status: :ok
     			 else
     			 	render json: {status: 'ERRO', message:'Houve um erro no calculo da porcentagem', data:"Erro"},status: :ok
     			 end

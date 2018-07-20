@@ -43,16 +43,14 @@ ZSSN Is a system created to help the human to survive an apocalypse zombie. Usin
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: usuario_do_seu_banco
   password: senha_do_seu_banco
-  timeout: 5000`
-
-  `development:
+  timeout: 5000
+  development:
   <<: *default
   database: survivors
   test:
   <<: *default
-  database: survivors`
-
-  `production:
+  database: survivors
+  production:
   <<: *default
   database: survivors`
 
@@ -71,7 +69,7 @@ Application will be runing at [localhost:3000](http://localhost:3000).
 ##### Request 
 
 ```sh
-GET  /survivors`
+GET  /api/v1/survivors`
 ```
 
 ##### Response
@@ -87,36 +85,89 @@ Content-Type: "application/json"
 ```sh
 Body:
 [
-    {
-        "_id": {
-            "$oid": "598c6da62a43161f3eb5bb66"
+    "status": "SUCCESSO",
+    "message": "Sobreviventes",
+    "data": [
+        {
+            "id": 5,
+            "name": "Nathalia",
+            "age": 17,
+            "gender": "Feminino",
+            "ll_latitude": 47.853,
+            "ll_longitude": 22.232,
+            "infested": "Nao",
+            "reports": 0,
+            "qt_water": 5,
+            "qt_food": 4,
+            "qt_medication": 3,
+            "qt_ammunition": 2,
+            "created_at": "2018-07-20T01:25:09.597Z",
+            "updated_at": "2018-07-20T01:25:09.597Z"
         },
-        "age": "25",
-        "gender": "male",
-        "last_location": {
-            "latitude": "-16.680353",
-            "longitude": "-49.256302"
+        {
+            "id": 4,
+            "name": "Giovanni",
+            "age": 17,
+            "gender": "Masculino",
+            "ll_latitude": 43.232,
+            "ll_longitude": 19.233,
+            "infested": "Nao",
+            "reports": 0,
+            "qt_water": 5,
+            "qt_food": 4,
+            "qt_medication": 1,
+            "qt_ammunition": 2,
+            "created_at": "2018-07-20T01:24:41.784Z",
+            "updated_at": "2018-07-20T01:24:41.784Z"
         },
-        "name": "Survivor",
-        "resources": [
-            {
-                "_id": {
-                    "$oid": "598c6da62a43161f3eb5bb67"
-                },
-                "points": null,
-                "quantity": 10,
-                "type": "Water"
-            },
-            {
-                "_id": {
-                    "$oid": "598c6da62a43161f3eb5bb68"
-                },
-                "points": null,
-                "quantity": 6,
-                "type": "Food"
-            }
-        ]
-    }
+        {
+            "id": 3,
+            "name": "Nicolle",
+            "age": 15,
+            "gender": "Feminino",
+            "ll_latitude": 44.232,
+            "ll_longitude": 12.232,
+            "infested": "Nao",
+            "reports": 0,
+            "qt_water": 4,
+            "qt_food": 1,
+            "qt_medication": 2,
+            "qt_ammunition": 3,
+            "created_at": "2018-07-20T01:19:39.359Z",
+            "updated_at": "2018-07-20T01:19:39.359Z"
+        },
+        {
+            "id": 2,
+            "name": "Bruno",
+            "age": 17,
+            "gender": "Masculino",
+            "ll_latitude": 44.523,
+            "ll_longitude": 12.233,
+            "infested": "Nao",
+            "reports": 0,
+            "qt_water": 3,
+            "qt_food": 0,
+            "qt_medication": 2,
+            "qt_ammunition": 3,
+            "created_at": "2018-07-20T01:18:42.234Z",
+            "updated_at": "2018-07-20T01:18:42.234Z"
+        },
+        {
+            "id": 1,
+            "name": "Fernando",
+            "age": 22,
+            "gender": "Masculino",
+            "ll_latitude": 43.323,
+            "ll_longitude": 18.323,
+            "infested": "Nao",
+            "reports": 0,
+            "qt_water": 1,
+            "qt_food": 2,
+            "qt_medication": 0,
+            "qt_ammunition": 1,
+            "created_at": "2018-07-20T01:17:32.590Z",
+            "updated_at": "2018-07-20T01:17:32.590Z"
+        }
 ]
 ```
 
@@ -125,29 +176,24 @@ Body:
 ##### Request 
 
 ```sh
-POST  /survivors`
+POST  /api/v1/survivors`
 ```
 
 ```sh
 Parameters:
 {
-    "survivor": 
     {
-        "name": "Survivor Test", 
-        "age": "43", 
-        "gender": "M", 
-        "last_location": {"latitude": "89809809809", "longitude": "-88983982100"},
-        "resources": [
-        {
-            "type": "Water", 
-            "quantity": 10
-            
-        }, 
-        { 
-            "type":"Food", 
-            "quantity": 6
-            
-        }]
+     "name": "Vitor",
+     "age": 18,
+     "gender": "Masculino",
+     "ll_latitude": 45.234,
+     "ll_longitude": 25.423,
+     "infested": "Nao",
+     "reports": 0,
+     "qt_water": 2,
+     "qt_food": 3,
+     "qt_medication": 2,
+     "qt_ammunition": 1
     }
 }
 ```
@@ -155,7 +201,7 @@ Parameters:
 ##### Response
 
 ```sh
-status: 201 created
+status: 200 OK
 ```
 
 ```sh
@@ -165,41 +211,47 @@ Content-Type: "application/json"
 ```sh
 Body:
 {
-    "_id": {
-        "$oid": "5990f7357b6ee2652e9e581a"
-    },
-    "age": "43",
-    "gender": "M",
-    "infection_count": 0,
-    "last_location": {
-        "latitude": "89809809809",
-        "longitude": "-88983982100"
-    },
-    "name": "Survivor Test"
+  {
+    "status": "SUCCESSO",
+    "message": "Sobrevivente salvo",
+    "data": {
+        "id": 6,
+        "name": "Vitor",
+        "age": 18,
+        "gender": "Masculino",
+        "ll_latitude": 45.234,
+        "ll_longitude": 25.423,
+        "infested": "Nao",
+        "reports": 0,
+        "qt_water": 2,
+        "qt_food": 3,
+        "qt_medication": 2,
+        "qt_ammunition": 1,
+        "created_at": "2018-07-20T01:30:30.989Z",
+        "updated_at": "2018-07-20T01:30:30.989Z"
+    }
 }
 ```
 
 ##### Errors
 Status | Error                | Message
 ------ | ---------------------|--------
-422    | Unprocessable Entity |   
-409    | Conflict             | survivor need to declare its own resources
+422    | Unprocessable Entity | Sobrevivente nao salvo. Todos os parametros devem ser preenchidos.
 
 ### Update Survivor Location
 
 ##### Request 
 
 ```sh
-PATCH/PUT /survivors/:id
+PATCH/PUT /api/v1/survivors/:id
 ```
 
 ```sh
 Parameters:
 {
-    "survivor": 
     {
-        "latitude": "-16.6868824", 
-        "longitude": "-49.2647885"
+     "ll_latitude": 43.233,
+     "ll_longitude": 25.255
     }
 }
 ```
@@ -207,11 +259,36 @@ Parameters:
 ##### Response
 
 ```sh
-status: 204 no_content
+status: 200 OK
 ```
 
 ```sh
 Content-Type: "application/json"
+```
+
+```sh
+Body:
+{
+  {
+    "status": "SUCCESSO",
+    "message": "Coordenadas atualizadas",
+    "data": {
+        "id": 1,
+        "ll_latitude": 43.233,
+        "ll_longitude": 25.255,
+        "name": "Fernando",
+        "age": 22,
+        "gender": "Masculino",
+        "infested": "Nao",
+        "reports": 0,
+        "qt_water": 1,
+        "qt_food": 2,
+        "qt_medication": 0,
+        "qt_ammunition": 1,
+        "created_at": "2018-07-20T01:17:32.590Z",
+        "updated_at": "2018-07-20T01:35:10.712Z"
+    }
+}
 ```
 
 ##### Errors
@@ -224,7 +301,7 @@ Status | Error      |
 ##### Request 
 
 ```sh
-POST   /survivors/:id/flag_infection
+GET   https://zssn-api-ruby.herokuapp.com/api/v1/survivors/1/report_infested_survivor
 ```
 
 ##### Response
@@ -240,8 +317,24 @@ Content-Type: "application/json"
 ```sh
 Body:
 {
-    "message": "Attention! Survivor was reported as infected x time(s)!"
-    "message": "Warning! Survivor was reported as infected x time(s)"
+    "status": "SUCCESSO",
+    "message": "Infestação reportada",
+    "data": {
+        "reports": 2,
+        "id": 1,
+        "name": "Fernando",
+        "age": 22,
+        "gender": "Masculino",
+        "ll_latitude": 43.233,
+        "ll_longitude": 25.255,
+        "infested": "Nao",
+        "qt_water": 1,
+        "qt_food": 2,
+        "qt_medication": 0,
+        "qt_ammunition": 1,
+        "created_at": "2018-07-20T01:17:32.590Z",
+        "updated_at": "2018-07-20T01:35:10.712Z"
+    }
 }
 ```
 
@@ -258,35 +351,24 @@ Survivors can trade items among themselves, respecting a price table.
 ##### Request 
 
 ```sh
-POST   /trade_resources
+POST   /api/v1/trade/:survivor_1_id/with/:survivor_2_id
 ```
 
 ```sh
 Parameters:
 {
-  "trade": {
-    "survivor_1": {
-      "id": "5991814f2a43166a43c27b48",
-      "resources": [
-        {
-          "type": "Water",
-          "quantity": 1
-        },
-        {
-          "type": "Medication",
-          "quantity": 1
-        }
-      ]
-    },
-    "survivor_2": {
-      "id": "5991814f2a43166a43c27b4b",
-      "resources": [
-        {
-          "type": "Ammunition",
-          "quantity": 6
-        }
-      ]
-    }
+  {
+  "offered": {
+      "qt_water":[integer],
+      "qt_food":[integer],
+      "qt_medication":[integer],
+      "qt_ammunition":[integer]
+  },
+  "wanted": {
+    "qt_water":[integer],
+    "qt_food":[integer],
+    "qt_medication":[integer],
+    "qt_ammunition":[integer]
   }
 }
 ```
@@ -304,17 +386,21 @@ Content-Type: "application/json"
 ```sh
 Body:
 {
-    "message": "Trade successfully completed"
+    {
+      "status": "SUCCESSO",
+      "message": "Troca feita",
+      "data": "Troca sucedida!"
+    }
 }
 ```
 
 ##### Errors
 Status | Error                | Message
 ------ | ---------------------|--------
-404    | Not Found            | Survivor with id xxxxx does not exist 
-409    | Conflict             | Survivor X is infected
-409    | Conflict             | Survivor X doesn't have enough resources
-409    | Conflict             | Resources points is not balanced both sides
+404    | Not Found            | 
+409    | Conflict             | Existem sobreviventes infectados.
+409    | Conflict             | Sobrevivente nao possui esses itens.
+409    | Conflict             | Existe uma diferenca de pontos entre os trocadores.
 
 
 ## Reports
@@ -324,7 +410,7 @@ Status | Error                | Message
 ##### Request 
 
 ```sh
-GET   /reports/infected_survivors
+GET   /api/v1/percentage_infested_survivors
 ```
 
 ##### Response
@@ -340,7 +426,11 @@ Content-Type: "application/json"
 ```sh
 Body:
 {
-    "data": "X%"
+    {
+      "status": "SUCCESS",
+      "message": "Porcentagem de Sobreviventes nao infestados",
+      "data": "x%"
+    }
 }
 ```
 
@@ -349,7 +439,7 @@ Body:
 ##### Request 
 
 ```sh
-GET   /reports/not_infected_survivors
+GET   /api/v1/percentage_uninfested_survivors
 ```
 
 ##### Response
@@ -365,7 +455,11 @@ Content-Type: "application/json"
 ```sh
 Body:
 {
-    "data": "X%"
+    {
+      "status": "SUCCESS",
+      "message": "Porcentagem de Sobreviventes infestados",
+      "data": "100.0%"
+    }
 }
 ```
 
